@@ -146,29 +146,173 @@
       position: relative;
       animation: slideDown 0.5s ease-in-out;
     }
-/* Media Queries สำหรับปรับขนาด */
+/* การแสดงผลสำหรับคอมพิวเตอร์/โน๊ตบุ๊ค (หน้าจอใหญ่) */
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 2.8em;
+  }
+
+  .container {
+    width: 70%;
+    padding: 40px;
+  }
+
+  textarea {
+    width: 80%;
+    font-size: 1.2rem;
+  }
+
+  button {
+    font-size: 1.2rem;
+    padding: 12px 24px;
+  }
+
+  .music-toggle {
+    font-size: 18px;
+    padding: 15px 25px;
+  }
+}
+
+/* การแสดงผลสำหรับแท็บเล็ต (iPad) */
+@media (max-width: 1024px) and (min-width: 768px) {
+  h1 {
+    font-size: 2.4em;
+  }
+
+  .container {
+    width: 80%;
+    padding: 35px;
+  }
+
+  textarea {
+    width: 85%;
+    font-size: 1.1rem;
+  }
+
+  button {
+    font-size: 1.1rem;
+    padding: 10px 20px;
+  }
+
+  .music-toggle {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+}
+
+/* การแสดงผลสำหรับโทรศัพท์มือถือ */
 @media (max-width: 768px) {
-      h1 {
-        font-size: 2em; /* ปรับขนาดฟอนต์ */
-      }
-    }
+  h1 {
+    font-size: 2.2em;
+    margin-bottom: 20px;
+  }
 
-    @media (max-width: 480px) {
-      h1 {
-        font-size: 1.7em; /* ปรับขนาดฟอนต์ให้เล็กลงสำหรับมือถือ */
-      }
-    }
+  .container {
+    width: 90%;
+    padding: 20px;
+  }
 
-    @keyframes slideDown {
-      from {
-        top: -100px;
-        opacity: 0;
-      }
-      to {
-        top: 20px;
-        opacity: 1;
-      }
-    }
+  textarea {
+    width: 90%;
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
+
+  .music-toggle {
+    font-size: 16px;
+    padding: 12px 18px;
+  }
+}
+
+/* การแสดงผลสำหรับโทรศัพท์มือถือขนาดเล็ก */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+  }
+
+  .container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  textarea {
+    font-size: 0.9rem;
+    width: 85%;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+
+  .music-toggle {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+}
+/* ปรับขนาดกล่องข้อความ (textarea) */
+textarea {
+  width: 80%; /* ขนาดเริ่มต้น */
+  max-width: 500px;
+  padding: 12px;
+  font-size: 1.2rem;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 1px solid #ccc;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+  resize: none;
+}
+
+/* ปรับขนาดปุ่ม (button) */
+button {
+  font-size: 1.2rem; /* ขนาดเริ่มต้น */
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffa1d0;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #f694c2;
+  transform: scale(1.1);
+}
+
+/* ปรับขนาดและการจัดวางกล่องข้อความและปุ่มในหน้าจอเล็กลง */
+@media (max-width: 768px) {
+  textarea {
+    width: 90%; /* ปรับขนาด textarea ให้กว้างขึ้น */
+    font-size: 1rem;
+  }
+
+  button {
+    font-size: 1rem; /* ปรับขนาดปุ่ม */
+    padding: 10px 20px;
+  }
+}
+
+/* ปรับขนาดและการจัดวางในมือถือ */
+@media (max-width: 480px) {
+  textarea {
+    font-size: 0.9rem;
+    width: 85%;
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 8px 16px;
+  }
+}
 
     .alert {
       position: fixed;
@@ -269,7 +413,7 @@
     </div>
     <div id="resultBox"></div>
   </div>
-  <button class="music-toggle" id="musicToggle">🔊 เปิดเพลง</button>
+  <button class="music-toggle" id="musicToggle"> เปิดเพลง</button>
   <audio id="background-music" loop>
     <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mp3">
     Your browser does not support the audio element.
@@ -284,10 +428,10 @@
     musicToggle.addEventListener("click", () => {
       if (music.paused) {
         music.play();
-        musicToggle.textContent = "🔇 ปิดเพลง";
+        musicToggle.textContent = " ปิดเพลง";
       } else {
         music.pause();
-        musicToggle.textContent = "🔊 เปิดเพลง";
+        musicToggle.textContent = " เปิดเพลง";
       }
     });
 
